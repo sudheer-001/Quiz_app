@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>My Profile</h2>
+        <div>
+            <a href="{% url 'home' %}" class="btn btn-secondary btn-sm me-2">Back to Quiz</a>
+            <a href="{% url 'scores' %}" class="btn btn-primary btn-sm me-2">My Scores</a>
+            <a href="{% url 'logout' %}" class="btn btn-danger btn-sm">Logout</a>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <strong>Username:</strong> {{ request.user.username }}
+    </div>
+
+    <form method="post" class="card p-4">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            <input type="text" name="full_name" class="form-control"
+                   value="{{ profile.full_name }}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" class="form-control"
+                   value="{{ request.user.email }}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Branch</label>
+            <input type="text" name="branch" class="form-control"
+                   value="{{ profile.branch }}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Year</label>
+            <input type="text" name="year" class="form-control"
+                   value="{{ profile.year }}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Contact</label>
+            <input type="text" name="contact" class="form-control"
+                   value="{{ profile.contact }}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Enrollment</label>
+            <input type="text" name="enrollment" class="form-control"
+                   value="{{ profile.enrollment }}">
+        </div>
+
+        <button type="submit" class="btn btn-success">Save changes</button>
+    </form>
+
+</div>
+
+</body>
+</html>
